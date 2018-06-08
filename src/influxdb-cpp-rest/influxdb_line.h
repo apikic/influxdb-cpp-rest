@@ -82,6 +82,17 @@ namespace influxdb {
 
                 add_comma_if_necessary();
 
+                //res << key << "=\"" << value << "\"";
+                res << key << "=" << value;
+
+                return *this;
+            }
+
+            key_value_pairs& add_quoted(std::string const& key, std::string const& value) {
+                ::influxdb::utility::throw_on_invalid_identifier(key);
+
+                add_comma_if_necessary();
+
                 res << key << "=\"" << value << "\"";
 
                 return *this;
