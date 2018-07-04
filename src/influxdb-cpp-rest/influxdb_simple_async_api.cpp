@@ -112,15 +112,16 @@ void influxdb::async_api::simple_db::drop()
     pimpl->simpledb.drop();
 }
 
-void influxdb::async_api::simple_db::insert(influxdb::api::line const & lines)
+bool influxdb::async_api::simple_db::insert(influxdb::api::line const & lines)
 {
     auto subscriber = pimpl->subj.get_subscriber();
 
     if (!subscriber.is_subscribed()) {
-        return;
+        return false;
     }
 
     subscriber.on_next(lines);
+    return true;
 }
 
 
