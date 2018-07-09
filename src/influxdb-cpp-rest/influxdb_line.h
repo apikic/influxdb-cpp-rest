@@ -56,7 +56,7 @@ namespace influxdb {
 
                 add_comma_if_necessary();
 
-                res << key << "=" << value << "i";
+                //res << key << "=" << value << "i";
                 if (std::is_same<bool, V>::value) {
                     std::string vals = (value) ? "true" : "false";
                     res << key << "=" << vals;
